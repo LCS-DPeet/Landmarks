@@ -8,11 +8,45 @@
 import SwiftUI
 
 struct GalleryItemView: View {
+    
+    let item: Landmark
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack(spacing: 0) {
+            Image(item.image)
+                .resizable()
+                .scaledToFill()
+                .frame(height: 125)
+                .clipShape(
+                    Circle()
+                )
+                .padding(.bottom, 10)
+
+            Text(item.name)
+                .font(.headline)
+                .multilineTextAlignment(.center)
+
+         Spacer()
+            
+            Image(systemName: item.isRecommended == true ? "hand.thumbsup.fill" : "hand.thumbsdown")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 20)
+                .padding(5)
+            
+        }
+        .padding()
+        
     }
 }
 
 #Preview {
-    GalleryItemView()
+    HStack {
+        GalleryItemView(item: wonderland)
+            .frame(idealHeight: 200, maxHeight: 250)
+        GalleryItemView(item: sudburyNickel)
+            .frame(idealHeight: 200, maxHeight: 250)
+
+    }
 }
