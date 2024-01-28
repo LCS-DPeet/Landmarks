@@ -8,12 +8,19 @@
 import SwiftUI
 
 struct GalleryView: View {
+    
+    // MARK: Stored properties
+    let twoColumns = [
+        GridItem(.adaptive(minimum: 100, maximum: 200), alignment: .top),
+        GridItem(.adaptive(minimum: 100, maximum: 200), alignment: .top),
+    ]
         
+    // MARK: Computed properties
     var body: some View {
         
         NavigationStack {
             
-            LazyVGrid {
+            LazyVGrid(columns: twoColumns) {
                 
                 ForEach(allLandmarks) { currentLandmark in
                     
@@ -22,6 +29,7 @@ struct GalleryView: View {
                     } label: {
                         GalleryItemView(item: currentLandmark)
                     }
+                    .tint(.primary)
                     
                 }
                 .navigationTitle("Landmarks")
